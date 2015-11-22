@@ -1,0 +1,19 @@
+option java_outer_classname = "ProductProtos";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+message ProductSearchFilter{
+	optional uint64 brand_id = 1;
+	optional uint64 category_id = 2;
+	optional uint64 business_group_id = 3;
+	optional uint64 product_name = 4;	
+}
+
+message ProductSearchRequest {
+	optional ProductSearchFilter product_search_filter = 1 ;
+	repeated uint64 product_id = 2 ;
+}
+
+message ProductSearchResonse {
+	optional Product product = 1 ;
+}

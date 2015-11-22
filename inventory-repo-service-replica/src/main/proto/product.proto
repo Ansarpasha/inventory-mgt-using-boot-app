@@ -1,0 +1,39 @@
+
+option java_package = "com.ecommerce.proto";
+option java_outer_classname = "ProductProtos";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+
+message Brand {
+	required uint64 id = 1;
+    required string name = 2;    
+}
+message Category {
+	required uint64 id = 1;
+    required string name = 2;    
+}
+
+message InventoryProduct {
+	required uint64 id = 1;
+    required string name = 2;
+    required Brand brand = 3;
+    required Category category = 4;
+	
+	optional string color = 5;
+	
+	required uint64 sell_rate = 6;
+	
+	required uint64 net_rate = 7;
+	
+	required uint32 quantity = 8;
+	
+	optional string description = 9;
+	
+	optional string imgUrl = 10;
+	
+	repeated string imageUrls = 11;
+	
+	repeated InventoryProduct recommendations = 12;
+	
+}

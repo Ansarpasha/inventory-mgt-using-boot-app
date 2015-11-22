@@ -1,0 +1,78 @@
+
+option java_outer_classname = "ProductProtos";
+option java_multiple_files = true;
+option optimize_for = SPEED;
+
+
+message Brand {
+	required uint64 id = 1;
+    required string name = 2;    
+}
+message Category {
+	required uint64 id = 1;
+    required string name = 2;
+    optional uint64 recommeded_category_id = 3;    
+}
+
+message Product {
+	optional uint64 id = 1;
+    required string name = 2;
+    required Brand brand = 3;
+    required Category category = 4;
+	
+	optional string color = 5;
+	
+	required uint64 sell_rate = 6;
+	
+	required uint64 net_rate = 7;
+	
+	required uint32 quantity = 8;
+	
+	optional string description = 9;
+	
+	optional string imgUrl = 10;
+	
+	repeated string imageUrls = 11;
+	
+	repeated Product recommendations = 12;
+	
+	required uint64 seller_id =13;
+}
+
+message ProductSearchFilter{
+	optional uint64 brand_id = 1;
+	optional uint64 category_id = 2;
+	optional uint64 business_group_id = 3;
+	optional uint64 product_name = 4;	
+}
+
+message ProductSearchRequest {
+	optional ProductSearchFilter product_search_filter = 1 ;
+	repeated uint64 product_id = 2 ;
+}
+
+message ProductSearchResonse {
+	repeated Product product = 1 ;
+}
+
+message RequestedProduct {
+   required uint32 product_id = 1;
+   required uint32 qty = 2;
+}
+
+
+message ProductCheckoutRequest{
+	required uint32 buyer_id = 1 ;
+	repeated RequestedProduct requested_product = 2 ;
+	optional string pci_info = 3 ;
+}
+
+message OrderDetail{
+	required uint32 order_detail_id = 1;
+	required Product product = 2 ;
+}
+
+message ProductCheckoutResponse{
+	repeated OrderDetail order_detail = 1;
+}
+
